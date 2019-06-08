@@ -36,6 +36,12 @@ RUN mkdir -p /opt/solr && \
 COPY scripts /opt/docker-solr/scripts
 RUN chown -R $SOLR_USER:$SOLR_GROUP /opt/docker-solr
 
+COPY schema.xml /opt/solr/example/solr/collection1/conf/schema.xml
+RUN chown -R $SOLR_USER:$SOLR_GROUP /opt/solr/example/solr/collection1/conf/schema.xml
+
+RUN mkdir -p /opt/solr/example/solr/collection1/data && \
+  chown -R $SOLR_USER:$SOLR_GROUP /opt/solr/example/solr/collection1/data
+
 EXPOSE 8983
 WORKDIR /opt/solr
 USER $SOLR_USER
